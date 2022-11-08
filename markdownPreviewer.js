@@ -59,7 +59,8 @@ let convertToHtml = new markdownit();
 let shrinkCustomScrollbarHeight = function (customScrollbar) {
   customScrollbar.style.height = "0px";
 };
-let addAnimationToTitle = function (titleElement) {
+let addAnimationToTitle = function() {
+  let titleElement = document.querySelector("#title");
   let containerOfTitleRows = document.querySelector(".title__rows-container");
   let secondRowOfTitle = document.querySelector(".title__second-row");
 
@@ -67,6 +68,14 @@ let addAnimationToTitle = function (titleElement) {
   containerOfTitleRows.style.animationName = "margin-change";
   secondRowOfTitle.style.animationName = "stretch-width";
 };
+let changeToggleButtonDisplay = function() {
+  let toggleButtonContainer = document.querySelector(".toggle-button-container");
+  toggleButtonContainer.style.display = "block";
+}
+let checkViewportWidth = function() {
+  let windowViewportWidth = window.innerWidth;
+  return windowViewportWidth;
+}
 
 /* React.js */
 class ParentContainer extends React.Component {
@@ -75,6 +84,7 @@ class ParentContainer extends React.Component {
     this.maximizeWindow = this.maximizeWindow.bind(this);
     this.edit = this.edit.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
+    this.toggleBetweenEditorAndPreviewer = this.toggleBetweenEditorAndPreviewer.bind(this);
   }
 
   edit(event) {
@@ -125,11 +135,42 @@ class ParentContainer extends React.Component {
     modalCloseButton.style.animationName = "up-rotate-disappear";
 
     setTimeout(function () {
-      let titleElement = document.querySelector("#title");
-
-      addAnimationToTitle(titleElement);
       modalBoxContainer.style.display = "none";
+      addAnimationToTitle();
+
+      if(checkViewportWidth() <= "768") {
+        changeToggleButtonDisplay();
+      }
     }, 3000);
+  }
+
+  toggleBetweenEditorAndPreviewer(event) {
+    let toggleButtonSwitch = document.querySelector(".toggle-button__switch");
+    let previewerOption = document.querySelector(".toggle-button__previewer-option");
+    let editorOption = document.querySelector(".toggle-button__editor-option");
+    let editorWindow = document.querySelector(".editor-window");
+    let previewerWindow = document.querySelector(".previewer-window");
+    let clickedElement = event.target;
+
+    if(clickedElement === previewerOption) {
+      toggleButtonSwitch.style.left = "50%";
+      previewerOption.style.color = "#ffe511";
+      previewerOption.style.textShadow = "1px 4px #000";
+      editorOption.style.color = "#424242";
+      editorOption.style.textShadow = "0px 0px transparent";
+      editorWindow.style.transform = "scale(0.8)";
+      editorWindow.style.opacity = 0;
+      previewerWindow.style.transform = "translateX(0px)";
+    } else {
+      toggleButtonSwitch.style.left = "0px";
+      editorOption.style.color = "#ffe511";
+      editorOption.style.textShadow = "1px 4px #000";
+      previewerOption.style.color = "#424242";
+      previewerOption.style.textShadow = "0px 0px transparent";
+      previewerWindow.style.transform = "translateX(100vw)";
+      editorWindow.style.transform = "scale(1)";
+      editorWindow.style.opacity = 1;
+    }
   }
 
   componentDidMount() {
@@ -201,6 +242,13 @@ class ParentContainer extends React.Component {
             <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
+        <div className="toggle-button-container">
+          <div className="toggle-button-container__toggle-button toggle-button" onClick={this.toggleBetweenEditorAndPreviewer}>
+            <div className="toggle-button__switch"></div>
+            <p className="toggle-button__editor-option">Editor</p>
+            <p className="toggle-button__previewer-option">Previewer</p>
+          </div>
+        </div>
       </>
     );
   }
@@ -215,7 +263,7 @@ window.addEventListener("scroll", function (event) {
   let heightForCustomScrollbar =
     heightScrolledOfBodyContent / (scrollableContentHeightOfBody / 100);
   let customScrollbarKey = document.querySelector(".custom-scrollbar__key");
-  console.log(event);
+
   if (
     window.scrollY !== 0 &&
     scrollableContentHeightOfBody > heightScrolledOfBodyContent
