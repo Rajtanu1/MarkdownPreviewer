@@ -116,14 +116,12 @@ class ParentContainer extends React.Component {
     let windowToMaximize = event.target.parentElement.parentElement;
     let contentHeightOfWindow = windowToMaximize.lastElementChild.scrollHeight;
     let heightOfTheWindowToMaximize = windowToMaximize.clientHeight;
-    let viewportHeight = window.innerHeight;
-    let seventyFivePercentOfViewportHeight = (viewportHeight / 100) * 75;
     let customScrollbarKey = document.querySelector(".custom-scrollbar__key");
 
     if (heightOfTheWindowToMaximize < contentHeightOfWindow) {
       windowToMaximize.style.height = `${contentHeightOfWindow}px`;
     } else {
-      windowToMaximize.style.height = `${seventyFivePercentOfViewportHeight}px`;
+      windowToMaximize.style.height = "70vh";
       shrinkCustomScrollbarHeight(customScrollbarKey);
     }
   }
@@ -266,8 +264,7 @@ window.addEventListener("scroll", function (event) {
   let scrollableContentHeightOfBody =
     document.body.scrollHeight - window.innerHeight;
   let heightScrolledOfBodyContent = window.scrollY;
-  let heightForCustomScrollbar =
-    heightScrolledOfBodyContent / (scrollableContentHeightOfBody / 100);
+  let heightForCustomScrollbar = heightScrolledOfBodyContent / (scrollableContentHeightOfBody / 100);
   let customScrollbarKey = document.querySelector(".custom-scrollbar__key");
 
   if (

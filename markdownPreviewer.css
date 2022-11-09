@@ -106,7 +106,7 @@ body {
 
 .editor-window, .previewer-window {
   width: 48%;
-  height: 75vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -338,7 +338,7 @@ img {
 
 .toggle-button-container {
   position: fixed;
-  bottom: 0.5rem;
+  bottom: 2vh;
   display: none;
 }
 
@@ -399,7 +399,7 @@ img {
   }
 
   #title {
-    height: 46px;
+    height: 45px;
     font-size: 1.6rem;
   }
 
@@ -410,14 +410,12 @@ img {
   
   .editor-window {
     width: 100%;
-    height: 72vh;
     transform: scale(0.8);
     opacity: 0;
   }
   
   .previewer-window {
-    width: 90%;
-    height: 72vh;
+    width: 88%;
     position: absolute;
   }
 
