@@ -54,6 +54,7 @@ There you go..
 
 let reactRenderMethod = ReactDOM.render;
 let convertToHtml = new markdownit();
+let audioObject = new Audio("./sounds/markdownPreviewer-toggle-sound.mp3");
 
 // some functions
 let shrinkCustomScrollbarHeight = function (customScrollbar) {
@@ -71,11 +72,14 @@ let addAnimationToTitle = function() {
 let changeToggleButtonDisplay = function() {
   let toggleButtonContainer = document.querySelector(".toggle-button-container");
   toggleButtonContainer.style.display = "block";
-}
+};
 let checkViewportWidth = function() {
   let windowViewportWidth = window.innerWidth;
   return windowViewportWidth;
-}
+};
+let toggleButtonSound = function() {
+  audioObject.play();
+};
 
 /* React.js */
 class ParentContainer extends React.Component {
@@ -161,6 +165,7 @@ class ParentContainer extends React.Component {
       editorWindow.style.transform = "scale(0.8)";
       editorWindow.style.opacity = 0;
       previewerWindow.style.transform = "translateX(0px)";
+      toggleButtonSound();
     } else {
       toggleButtonSwitch.style.left = "0px";
       editorOption.style.color = "#ffe511";
@@ -170,6 +175,7 @@ class ParentContainer extends React.Component {
       previewerWindow.style.transform = "translateX(100vw)";
       editorWindow.style.transform = "scale(1)";
       editorWindow.style.opacity = 1;
+      toggleButtonSound();
     }
   }
 

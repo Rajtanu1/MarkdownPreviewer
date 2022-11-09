@@ -47,7 +47,7 @@ body {
 }
 
 .title__rows-container {
-  margin-top: -68px;
+  margin-top: var(--rows-container-margin-top);
   animation-duration: 1.5s;
   animation-delay: 3.5s;
   animation-timing-function: ease-out;
@@ -287,7 +287,7 @@ img {
 .modal-box-container__close-button {
   display: block;
   margin: -1.7rem auto 0px;
-  padding: 5px 15px;
+  padding: 0.5rem 16px;
   border: 0px;
   border-radius: 50%;
   background-color: #0d0f0d;
@@ -395,7 +395,7 @@ img {
   }
 
   body {
-    padding: 0vw 6vw;
+    padding: 0vw 6vw 2vw;
   }
 
   #title {
@@ -403,13 +403,9 @@ img {
     font-size: 1.6rem;
   }
 
-  .title__rows-container {
-    margin-top: -46px;
-  }
-
   .title__first-row, .title__second-row {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
   }
   
   .editor-window {
