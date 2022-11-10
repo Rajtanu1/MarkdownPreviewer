@@ -419,6 +419,10 @@ img {
     position: absolute;
   }
 
+  .fa-maximize:hover {
+    color: #28423c;
+  }
+  
   .modal-box {
     width: 80%;
   }

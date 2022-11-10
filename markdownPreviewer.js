@@ -103,6 +103,7 @@ class ParentContainer extends React.Component {
         totalNoOfCharactersInTextarea
       ); //used for moving the cursor to the end of the editor
       textareaElement.focus();
+      textareaElement.scrollTop = textareaElement.scrollHeight;
       editPen.style.backgroundColor = "black";
       editPen.style.color = "white";
     } else {
