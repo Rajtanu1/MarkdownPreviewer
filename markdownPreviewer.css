@@ -149,19 +149,6 @@ body {
   color: white;
 }
 
-.textarea__edit-pen {
-  width: max-content;
-  padding: 6px 12px;
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
-  border-radius: 12px;
-  background-color: white;
-  font-size: 1.5rem;
-  color: black;
-  transition: color 0.3s, background-color 0.3s;
-}
-
 .editor {
   width: 100%;
   height: 100%;
@@ -380,12 +367,12 @@ img {
 .toggle-button__editor-option {
   color: #424242;
   transition: text-shadow 0.5s, color 0.8s;
-  transition: text-shadow 0.5s, color 0.8s; 
 }
 
 .toggle-button__previewer-option {
   text-shadow: 1px 4px #000;
   color: #ffe511;
+  transition: text-shadow 0.5s, color 0.8s; 
 }
 
 @media (max-width: 768px) {
@@ -422,7 +409,7 @@ img {
   .fa-maximize:hover {
     color: #28423c;
   }
-  
+
   .modal-box {
     width: 80%;
   }

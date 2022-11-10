@@ -91,28 +91,6 @@ class ParentContainer extends React.Component {
     this.toggleBetweenEditorAndPreviewer = this.toggleBetweenEditorAndPreviewer.bind(this);
   }
 
-  edit(event) {
-    let editPen = document.querySelector(".textarea__edit-pen");
-    let textareaElement = document.querySelector("textarea");
-    let totalNoOfCharactersInTextarea = textareaElement.value.length;
-
-    if (textareaElement.readOnly === true) {
-      textareaElement.readOnly = false;
-      textareaElement.setSelectionRange(
-        totalNoOfCharactersInTextarea,
-        totalNoOfCharactersInTextarea
-      ); //used for moving the cursor to the end of the editor
-      textareaElement.focus();
-      textareaElement.scrollTop = textareaElement.scrollHeight;
-      editPen.style.backgroundColor = "black";
-      editPen.style.color = "white";
-    } else {
-      textareaElement.readOnly = true;
-      editPen.style.backgroundColor = "white";
-      editPen.style.color = "black";
-    }
-  }
-
   maximizeWindow(event) {
     let windowToMaximize = event.target.parentElement.parentElement;
     let contentHeightOfWindow = windowToMaximize.lastElementChild.scrollHeight;
@@ -202,10 +180,7 @@ class ParentContainer extends React.Component {
             Editor
             <i className="fa-solid fa-maximize" onClick={this.maximizeWindow}></i>
           </div>
-          <div className="textarea__edit-pen">
-            <i className="fa-solid fa-pen-to-square" onClick={this.edit}></i>
-          </div>
-          <textarea className="editor" name="text-field" rows="15" spellCheck="false" readOnly>
+          <textarea className="editor" name="text-field" rows="15" spellCheck="false">
             {defaultMarkdownValue}
           </textarea>
         </div>
