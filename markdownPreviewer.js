@@ -86,7 +86,6 @@ class ParentContainer extends React.Component {
   constructor(props) {
     super(props);
     this.maximizeWindow = this.maximizeWindow.bind(this);
-    this.edit = this.edit.bind(this);
     this.closeModalBox = this.closeModalBox.bind(this);
     this.toggleBetweenEditorAndPreviewer = this.toggleBetweenEditorAndPreviewer.bind(this);
   }
